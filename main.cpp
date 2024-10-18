@@ -1,3 +1,5 @@
+// COMSC-210 | Midterm 1 | Daniil Malakhov
+// IDE used: Codeblocks
 #include <iostream>
 #include <iostream>
 #include <fstream>
