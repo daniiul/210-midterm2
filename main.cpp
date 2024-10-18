@@ -7,6 +7,8 @@ using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
+
+
 class DoublyLinkedList {
 private:
     struct Node {
@@ -26,13 +28,13 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(string name, int position) {
+    void insert_after(string n, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(name);
+        Node* newNode = new Node(n);
         if (!head) {
             head = tail = newNode;
             return;
@@ -57,12 +59,12 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(string name) {
+    void delete_val(string n) {
         if (!head) return;
 
         Node* temp = head;
 
-        while (temp && temp->data != value)
+        while (temp && name.compare(n))
             temp = temp->next;
 
         if (!temp) return;
@@ -187,7 +189,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->name<< " ";
             current = current->next;
         }
         cout << endl;
@@ -200,7 +202,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->name << " ";
             current = current->prev;
         }
         cout << endl;
@@ -231,10 +233,12 @@ int main() {
     for(int j = 1; j < 5; j++)
     {
         int value = rand() % (length - 1) + 1;
-
+        Node *temp = new Node(names[value]);
+        list.push_back(temp);
     }
 
-    int time = 1;
+    cout << "Store opens: " << endl;
+    list
 
     for(int i = 1; i <= 20; i++)
     {
