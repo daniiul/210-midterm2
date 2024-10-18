@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -216,7 +217,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->person->getName()<< " ";
+            cout << "            " << current->person->getName()<< endl;
             current = current->next;
         }
         cout << endl;
@@ -255,23 +256,15 @@ public:
     }
     string name_at_pos(int pos)
     {
-        if (position < 0) {
-            cout << "Position must be >= 0." << endl;
-            return;
-        }
-
         Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
+        for (int i = 0; i < pos && temp; ++i)
             temp = temp->next;
 
-        return temp->getName();
+        return temp->person->getName();
     }
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
-
-
 
     DoublyLinkedList list;
 
@@ -291,12 +284,13 @@ int main() {
 
     for(int i = 1; i <= 20; i++)
     {
+
         cout << "Time step # " << i << endl;
 
 
         int prob = rand() % 100 + 1;  // returns random number 1-100
         if (prob <= 40) {
-            cout <<  "      " << list.front_name() << "is served" << endl;
+            cout <<  "      " << list.front_name() << " is served" << endl;
             list.pop_front();
         }
         if (prob <= 60)
@@ -304,7 +298,7 @@ int main() {
             Person *temp = new Person();
             string na = temp->getName();
             list.push_back(temp);
-            cout << "      " << na << "joins the line" << endl;
+            cout << "      " << na << " joins the line" << endl;
         }
         if (prob <= 20)
         {
@@ -315,7 +309,7 @@ int main() {
         {
             int value = rand() % (list.length_of_list());
             cout <<  "      " << list.name_at_pos(value) << " has left the line" << endl;
-            list.delete_pos(value);
+            list.delete_pos(value + 1);
         }
         if (prob <= 10)
         {
@@ -324,13 +318,11 @@ int main() {
             cout <<  "      " << na << " (vip) joins the front of the line" << endl;
             list.push_front(temp);
         }
-
+        cout << "      Resulting line so far: " << endl;
+        list.print();
     }
 
-    int prob = rand() % 100 + 1  // returns random number 1-100
-    if (prob <= 40) {
-        // perform Event A
-    }
+
 
     return 0;
 }
