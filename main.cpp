@@ -7,7 +7,32 @@ using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
+class Person
+{
+private:
+    string name;
+public:
+    Person()
+    {
+        ifstream inputFile("names.txt");
 
+        if(!inputFile.is_open())
+        {
+            cout << "Error! Can't open File!";
+            return 0;
+        }
+
+        vector<string> names;
+        string temp;
+        while(getline(inputFile, temp))
+        {
+            names.push_back(temp);
+        }
+        int length = names.size();
+
+        name = names[]
+    }
+};
 
 class DoublyLinkedList {
 private:
@@ -212,30 +237,11 @@ public:
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
-    ifstream inputFile("names.txt");
 
-    if(!inputFile.is_open())
-    {
-        cout << "Error! Can't open File!";
-        return 0;
-    }
-
-    vector<string> names;
-    string temp;
-    while(getline(inputFile, temp))
-    {
-        names.push_back(temp);
-    }
-    int length = names.size();
 
     DoublyLinkedList list;
 
-    for(int j = 1; j < 5; j++)
-    {
-        int value = rand() % (length - 1) + 1;
-        Node *temp = new Node(names[value]);
-        list.push_back(temp);
-    }
+
 
     cout << "Store opens: " << endl;
     list
