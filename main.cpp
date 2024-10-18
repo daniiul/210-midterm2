@@ -19,7 +19,6 @@ public:
         if(!inputFile.is_open())
         {
             cout << "Error! Can't open File!";
-            return 0;
         }
 
         vector<string> names;
@@ -30,18 +29,21 @@ public:
         }
         int length = names.size();
 
-        name = names[]
+        int value = rand() % (length - 1) + 1;
+        name = names[value];
     }
+
+    string getName() { return name;}
 };
 
 class DoublyLinkedList {
 private:
     struct Node {
-        string name;
+        Person *person;
         Node* prev;
         Node* next;
-        Node(string name, Node* p = nullptr, Node* n = nullptr) {
-            data = val;
+        Node(Person* pe, Node* p = nullptr, Node* n = nullptr) {
+            person = pe;
             prev = p;
             next = n;
         }
@@ -53,13 +55,13 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(string n, int position) {
+    void insert_after(Person *p, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(n);
+        Node* newNode = new Node(p);
         if (!head) {
             head = tail = newNode;
             return;
@@ -84,12 +86,12 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(string n) {
+    void delete_person(string n) {
         if (!head) return;
 
         Node* temp = head;
 
-        while (temp && name.compare(n))
+        while (temp && n.compare(temp->person->getName()))
             temp = temp->next;
 
         if (!temp) return;
@@ -144,8 +146,8 @@ public:
         delete temp;
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
+    void push_back(Person* p) {
+        Node* newNode = new Node(p);
         if (!tail)
             head = tail = newNode;
         else {
@@ -155,8 +157,8 @@ public:
         }
     }
 
-    void push_front(int v) {
-        Node* newNode = new Node(v);
+    void push_front(Person* p) {
+        Node* newNode = new Node(p);
         if (!head)
             head = tail = newNode;
         else {
@@ -214,7 +216,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->name<< " ";
+            cout << current->person->getName()<< " ";
             current = current->next;
         }
         cout << endl;
@@ -227,7 +229,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->name << " ";
+            cout << current->person->getName() << " ";
             current = current->prev;
         }
         cout << endl;
@@ -241,7 +243,12 @@ int main() {
 
     DoublyLinkedList list;
 
+    for(int j = 1; j < 5; j++)
+    {
 
+        Node *temp = new Node();
+        list.push_back(temp);
+    }
 
     cout << "Store opens: " << endl;
     list
