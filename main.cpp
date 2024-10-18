@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -9,10 +10,10 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        string name;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
+        Node(string name, Node* p = nullptr, Node* n = nullptr) {
             data = val;
             prev = p;
             next = n;
@@ -25,13 +26,13 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(int value, int position) {
+    void insert_after(string name, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(name);
         if (!head) {
             head = tail = newNode;
             return;
@@ -56,7 +57,7 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(int value) {
+    void delete_val(string name) {
         if (!head) return;
 
         Node* temp = head;
@@ -217,7 +218,33 @@ int main() {
         return 0;
     }
 
+    vector<string> names;
+    string temp;
+    while(getline(inputFile, temp))
+    {
+        names.push_back(temp);
+    }
+    int length = names.size();
 
+    DoublyLinkedList list;
+
+    for(int j = 1; j < 5; j++)
+    {
+        int value = rand() % (length - 1) + 1;
+
+    }
+
+    int time = 1;
+
+    for(int i = 1; i <= 20; i++)
+    {
+
+    }
+
+    int prob = rand() % 100 + 1  // returns random number 1-100
+    if (prob <= 40) {
+        // perform Event A
+    }
 
     return 0;
 }
