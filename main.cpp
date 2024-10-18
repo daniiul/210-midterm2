@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -266,6 +267,8 @@ public:
 
 int main() {
 
+    srand(time(0));
+
     DoublyLinkedList list;
 
     string fr;
@@ -289,9 +292,10 @@ int main() {
 
 
         int prob = rand() % 100 + 1;  // returns random number 1-100
-        if (prob <= 40) {
-            cout <<  "      " << list.front_name() << " is served" << endl;
-            list.pop_front();
+        if (prob <= 20)
+        {
+            cout <<  "      " << list.back_name() << " (at rear) has left the line" << endl;
+            list.pop_back();
         }
         if (prob <= 60)
         {
@@ -300,10 +304,9 @@ int main() {
             list.push_back(temp);
             cout << "      " << na << " joins the line" << endl;
         }
-        if (prob <= 20)
-        {
-            cout <<  "      " << list.back_name() << " (at rear) has left the line" << endl;
-            list.pop_back();
+        if (prob <= 40) {
+            cout <<  "      " << list.front_name() << " is served" << endl;
+            list.pop_front();
         }
         if (prob <= 10)
         {
