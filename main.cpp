@@ -234,6 +234,14 @@ public:
         }
         cout << endl;
     }
+    string front_name()
+    {
+        return head->person->getName();
+    }
+    string back_name()
+    {
+        return tail->person->getName();
+    }
 };
 
 int main() {
@@ -243,19 +251,41 @@ int main() {
 
     DoublyLinkedList list;
 
+    string fr;
+    string bc;
+
     for(int j = 1; j < 5; j++)
     {
 
-        Node *temp = new Node();
+        Person *temp = new Person();
         list.push_back(temp);
     }
 
     cout << "Store opens: " << endl;
-    list
+    list.print();
+
 
     for(int i = 1; i <= 20; i++)
     {
+        cout << "Time step # " << i << endl;
 
+
+        int prob = rand() % 100 + 1;  // returns random number 1-100
+        if (prob <= 40) {
+            cout <<  "      " << fr << "is served" << endl;
+            list.pop_front();
+        }
+        if (prob <= 60)
+        {
+            Person *temp = new Person();
+            string na = temp->getName();
+            list.push_back(temp);
+            cout << "      " << na << "joins the line" << endl;
+        }
+        if (prob <= 20)
+        {
+
+        }
     }
 
     int prob = rand() % 100 + 1  // returns random number 1-100
