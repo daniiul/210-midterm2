@@ -29,7 +29,7 @@ public:
         }
         int length = names.size();
 
-        int value = rand() % (length - 1) + 1;
+        int value = rand() % (length) ;
         name = names[value];
     }
 
@@ -242,6 +242,30 @@ public:
     {
         return tail->person->getName();
     }
+    int length_of_list()
+    {
+        Node* temp = head;
+        int len;
+        while(temp)
+        {
+            temp = temp->next;
+            len++;
+        }
+        return len;
+    }
+    string name_at_pos(int pos)
+    {
+        if (position < 0) {
+            cout << "Position must be >= 0." << endl;
+            return;
+        }
+
+        Node* temp = head;
+        for (int i = 0; i < position && temp; ++i)
+            temp = temp->next;
+
+        return temp->getName();
+    }
 };
 
 int main() {
@@ -272,7 +296,7 @@ int main() {
 
         int prob = rand() % 100 + 1;  // returns random number 1-100
         if (prob <= 40) {
-            cout <<  "      " << fr << "is served" << endl;
+            cout <<  "      " << list.front_name() << "is served" << endl;
             list.pop_front();
         }
         if (prob <= 60)
@@ -284,8 +308,23 @@ int main() {
         }
         if (prob <= 20)
         {
-
+            cout <<  "      " << list.back_name() << " (at rear) has left the line" << endl;
+            list.pop_back();
         }
+        if (prob <= 10)
+        {
+            int value = rand() % (list.length_of_list());
+            cout <<  "      " << list.name_at_pos(value) << " has left the line" << endl;
+            list.delete_pos(value);
+        }
+        if (prob <= 10)
+        {
+            Person *temp = new Person();
+            string na = temp->getName();
+            cout <<  "      " << na << " (vip) joins the front of the line" << endl;
+            list.push_front(temp);
+        }
+
     }
 
     int prob = rand() % 100 + 1  // returns random number 1-100
